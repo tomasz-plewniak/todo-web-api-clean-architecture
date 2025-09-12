@@ -1,0 +1,45 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{C8564986-4FF3-4F0F-82D4-B9A0F85EF7C3}"
+	ProjectSection(SolutionItems) = preProject
+		.gitignore = .gitignore
+		LICENSE = LICENSE
+		README.md = README.md
+		docker\todo-web-api-base-demo\db-docker-compose.yml = docker\todo-web-api-base-demo\db-docker-compose.yml
+		.github\workflows\dotnet.yml = .github\workflows\dotnet.yml
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{CAE1C2C6-476D-47D3-A6BA-7695C0DF131E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{7B80CF6C-6A3F-4B37-B3D8-F4D11C829DD2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApi", "src\WebApi\WebApi.csproj", "{48CAD1CC-B716-4A02-89E1-7C15B371CE0E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTests", "tests\UnitTests\UnitTests.csproj", "{281B95BC-5278-47B6-97DC-3CCDACFC49D6}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{48CAD1CC-B716-4A02-89E1-7C15B371CE0E} = {CAE1C2C6-476D-47D3-A6BA-7695C0DF131E}
+		{281B95BC-5278-47B6-97DC-3CCDACFC49D6} = {7B80CF6C-6A3F-4B37-B3D8-F4D11C829DD2}
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{48CAD1CC-B716-4A02-89E1-7C15B371CE0E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{48CAD1CC-B716-4A02-89E1-7C15B371CE0E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{48CAD1CC-B716-4A02-89E1-7C15B371CE0E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{48CAD1CC-B716-4A02-89E1-7C15B371CE0E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{281B95BC-5278-47B6-97DC-3CCDACFC49D6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{281B95BC-5278-47B6-97DC-3CCDACFC49D6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{281B95BC-5278-47B6-97DC-3CCDACFC49D6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{281B95BC-5278-47B6-97DC-3CCDACFC49D6}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal

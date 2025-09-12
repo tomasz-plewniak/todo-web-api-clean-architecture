@@ -1,0 +1,61 @@
+GET {{webApiHostAddress}}/api/todo-items
+Accept: application/json
+
+### Create new user
+# @name createUser
+POST {{webApiHostAddress}}/api/users
+Content-Type: application/json
+
+{
+  "userName": "{{$random.name.username}}",
+  "email": "{{$random.email}}"
+}
+
+> {%
+client.global.set("userId", response.body.id)
+%}
+
+### Get user by id
+GET {{webApiHostAddress}}/api/users/{{userId}}
+Content-Type: application/json
+
+### Update user
+PATCH {{webApiHostAddress}}/api/users/{{userId}}
+Content-Type: application/json
+
+{
+  "userName": "domino",
+  "email": "domino@gmail.com"
+}
+
+### Delete user
+DELETE {{webApiHostAddress}}/api/users/{{userId}}
+Content-Type: application/json
+
+### Create todo item
+### Update user
+POST {{webApiHostAddress}}/api/todo-items/
+Content-Type: application/json
+
+{
+  "title": "{{$random.lorem.sentence}}",
+  "description": "{{$random.lorem.paragraph}}",
+  "userId": "{{userId}}"
+}
+
+> {%
+    client.global.set("todoId", response.body.id)
+%}
+
+### Update todo item
+PATCH {{webApiHostAddress}}/api/todo-items/{{todoId}}
+Content-Type: application/json
+
+{
+  "title": "{{$random.lorem.sentence}}",
+  "description": "test"
+}
+
+### Delete todo item
+DELETE {{webApiHostAddress}}/api/todo-items/{{todoId}}
+Content-Type: application/json
