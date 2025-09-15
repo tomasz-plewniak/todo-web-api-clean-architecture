@@ -19,10 +19,7 @@
 
     <ItemGroup>
       <Folder Include="Data\Migrations\" />
-      <Folder Include="DTOs\Common\" />
       <Folder Include="DTOs\Requests\TodoItems\" />
-      <Folder Include="DTOs\Responses\TodoItems\" />
-      <Folder Include="DTOs\Responses\Users\" />
     </ItemGroup>
 
     <ItemGroup>
