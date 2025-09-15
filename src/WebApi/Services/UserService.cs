@@ -1,3 +1,4 @@
+using Domain.Users;
 using Microsoft.EntityFrameworkCore;
 using WebApi.Data;
 using WebApi.Models;

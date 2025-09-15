@@ -1,3 +1,4 @@
+using Domain.Users;
 using WebApi.Models;
 
 namespace WebApi.Services;

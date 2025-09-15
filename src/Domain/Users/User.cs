@@ -1,4 +1,6 @@
-namespace WebApi.Models;
+using Domain.TodoItems;
+
+namespace Domain.Users;
 
 public class User
 {

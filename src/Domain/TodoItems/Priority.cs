@@ -1,4 +1,4 @@
-namespace WebApi.Models;
+namespace Domain.TodoItems;
 
 public enum Priority
 {

@@ -1,4 +1,5 @@
 using System.Net;
+using Domain.Users;
 using Microsoft.AspNetCore.Mvc;
 using WebApi.Models;
 using WebApi.Services;
