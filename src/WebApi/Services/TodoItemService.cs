@@ -1,7 +1,7 @@
-﻿using Domain.TodoItems;
+﻿using Application.TodoItems;
+using Domain.TodoItems;
 using Microsoft.EntityFrameworkCore;
 using WebApi.Data;
-using WebApi.Models;
 
 namespace WebApi.Services;
 

@@ -1,7 +1,6 @@
 ﻿using Domain.TodoItems;
-using WebApi.Models;
 
-namespace WebApi.Services;
+namespace Application.TodoItems;
 
 public interface ITodoItemService
 {
