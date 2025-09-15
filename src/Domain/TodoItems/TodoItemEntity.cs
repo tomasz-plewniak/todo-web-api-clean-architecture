@@ -1,8 +1,10 @@
-namespace WebApi.Models;
+using Domain.Users;
 
-public class TodoItem
+namespace Domain.TodoItems;
+
+public class TodoItemEntity
 {
-    public TodoItem()
+    public TodoItemEntity()
     {
         CreatedAt = DateTime.UtcNow;
     }
@@ -25,5 +27,5 @@ public class TodoItem
     
     public Guid UserId { get; set; }
     
-    public User User { get; set; }
+    public UserEntity UserEntity { get; set; }
 }

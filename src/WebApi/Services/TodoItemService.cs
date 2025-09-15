@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Domain.TodoItems;
+using Microsoft.EntityFrameworkCore;
 using WebApi.Data;
 using WebApi.Models;
 
@@ -13,51 +14,51 @@ public class TodoItemService : ITodoItemService
         _context = context;
     }
     
-    public async Task<IEnumerable<TodoItem>> GetTodoItemsAsync()
+    public async Task<IEnumerable<TodoItemEntity>> GetTodoItemsAsync()
     {
         return await _context.TodoItems.ToListAsync();
     }
 
-    public async Task<TodoItem?> GetTodoItemAsync(Guid id)
+    public async Task<TodoItemEntity?> GetTodoItemAsync(Guid id)
     {
         return await _context.TodoItems.SingleOrDefaultAsync(t => t.Id == id);
     }
 
-    public async Task CreateTodoItemAsync(TodoItem todoItem)
+    public async Task CreateTodoItemAsync(TodoItemEntity todoItemEntity)
     {
-        await _context.TodoItems.AddAsync(todoItem);
+        await _context.TodoItems.AddAsync(todoItemEntity);
         await _context.SaveChangesAsync();
     }
 
-    public async Task UpdateTodoItemAsync(UpdateTodoItem updateTodoItem, TodoItem todoItem)
+    public async Task UpdateTodoItemAsync(UpdateTodoItem updateTodoItem, TodoItemEntity todoItemEntity)
     {
         if (updateTodoItem.Title is not null)
         {
-            todoItem.Title = updateTodoItem.Title;
+            todoItemEntity.Title = updateTodoItem.Title;
         }
         
         if (updateTodoItem.Description is not null)
         {
-            todoItem.Description = updateTodoItem.Description;
+            todoItemEntity.Description = updateTodoItem.Description;
         }
 
         if (updateTodoItem.DueDate is not null)
         {
-            todoItem.DueDate = updateTodoItem.DueDate;
+            todoItemEntity.DueDate = updateTodoItem.DueDate;
         }
 
         if (updateTodoItem.Priority is not null)
         {
-            todoItem.Priority = updateTodoItem.Priority;
+            todoItemEntity.Priority = updateTodoItem.Priority;
         }
 
-        _context.TodoItems.Update(todoItem);
+        _context.TodoItems.Update(todoItemEntity);
         await _context.SaveChangesAsync();
     }
 
-    public async Task DeleteTodoItemAsync(TodoItem todoItem)
+    public async Task DeleteTodoItemAsync(TodoItemEntity todoItemEntity)
     {
-        _context.TodoItems.Remove(todoItem);
+        _context.TodoItems.Remove(todoItemEntity);
         await _context.SaveChangesAsync();
     }
 }

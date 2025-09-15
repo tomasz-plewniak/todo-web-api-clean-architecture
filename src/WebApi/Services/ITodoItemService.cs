@@ -1,18 +1,19 @@
-﻿using WebApi.Models;
+﻿using Domain.TodoItems;
+using WebApi.Models;
 
 namespace WebApi.Services;
 
 public interface ITodoItemService
 {
-    public Task<IEnumerable<TodoItem>> GetTodoItemsAsync();
+    public Task<IEnumerable<TodoItemEntity>> GetTodoItemsAsync();
     
-    public Task<TodoItem?> GetTodoItemAsync(Guid id);
+    public Task<TodoItemEntity?> GetTodoItemAsync(Guid id);
     
-    public Task CreateTodoItemAsync(TodoItem todoItem);
+    public Task CreateTodoItemAsync(TodoItemEntity todoItemEntity);
     
     public Task UpdateTodoItemAsync(
         UpdateTodoItem updateTodoItem,
-        TodoItem todoItem);
+        TodoItemEntity todoItemEntity);
     
-    public Task DeleteTodoItemAsync(TodoItem todoItem);
+    public Task DeleteTodoItemAsync(TodoItemEntity todoItemEntity);
 }

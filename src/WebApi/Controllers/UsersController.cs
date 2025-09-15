@@ -1,4 +1,5 @@
 using System.Net;
+using Domain.Users;
 using Microsoft.AspNetCore.Mvc;
 using WebApi.Models;
 using WebApi.Services;
@@ -6,29 +7,29 @@ using WebApi.Services;
 namespace WebApi.Controllers;
 
 [ApiController]
-[ProducesResponseType<IEnumerable<User>>(StatusCodes.Status200OK)]
+[ProducesResponseType<IEnumerable<UserEntity>>(StatusCodes.Status200OK)]
 [Route("api/users")]
 public class UsersController(IUserService userService) : ControllerBase
 {
     [HttpGet]
     [ActionName(nameof(GetUsersAsync))]
-    [ProducesResponseType<IEnumerable<User>>(StatusCodes.Status200OK)]
+    [ProducesResponseType<IEnumerable<UserEntity>>(StatusCodes.Status200OK)]
     public async Task<IActionResult>  GetUsersAsync(CancellationToken cancellationToken = default)
     {
-        IEnumerable<User> users = await userService.GetUsersAsync(cancellationToken);
+        IEnumerable<UserEntity> users = await userService.GetUsersAsync(cancellationToken);
         
         return Ok(users);
     }
 
     [HttpGet("{id:guid}")]
     [ActionName(nameof(GetUserAsync))]   
-    [ProducesResponseType<User>(StatusCodes.Status200OK)]
+    [ProducesResponseType<UserEntity>(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     public async Task<IActionResult> GetUserAsync(
         [FromRoute] Guid id,
         CancellationToken cancellationToken = default)
     {
-        User? user = await userService.GetUserAsync(id, cancellationToken);
+        UserEntity? user = await userService.GetUserAsync(id, cancellationToken);
         
         if (user == null)
         {
@@ -50,11 +51,11 @@ public class UsersController(IUserService userService) : ControllerBase
             return BadRequest(ModelState);
         }
         
-        User user = await userService.CreateUserAsync(createUser);
+        UserEntity userEntity = await userService.CreateUserAsync(createUser);
         
         
         
-        return CreatedAtAction(nameof(GetUserAsync), new {id = user.Id}, user);   
+        return CreatedAtAction(nameof(GetUserAsync), new {id = userEntity.Id}, userEntity);   
     }
 
     [HttpPatch("{id}")]
@@ -68,7 +69,7 @@ public class UsersController(IUserService userService) : ControllerBase
             return BadRequest(ModelState);
         }
         
-        User? user = await userService.GetUserAsync(id);
+        UserEntity? user = await userService.GetUserAsync(id);
         if (user == null)
         {
             return NotFound();
@@ -86,7 +87,7 @@ public class UsersController(IUserService userService) : ControllerBase
     public async Task<IActionResult> DeleteUserAsync(
         [FromRoute] Guid id)
     {
-        User? user = await userService.GetUserAsync(id);
+        UserEntity? user = await userService.GetUserAsync(id);
 
         if (user is null)
         {
