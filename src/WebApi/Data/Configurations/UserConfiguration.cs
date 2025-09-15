@@ -1,7 +1,6 @@
 ﻿using Domain.Users;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using WebApi.Models;
 
 namespace WebApi.Data.Configurations;
 

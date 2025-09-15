@@ -1,9 +1,6 @@
-using System.Net;
 using Application.Users;
 using Domain.Users;
 using Microsoft.AspNetCore.Mvc;
-using WebApi.Models;
-using WebApi.Services;
 
 namespace WebApi.Controllers;
 

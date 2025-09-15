@@ -1,7 +1,6 @@
 ﻿using Domain.TodoItems;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using WebApi.Models;
 
 namespace WebApi.Data.Configurations;
 
