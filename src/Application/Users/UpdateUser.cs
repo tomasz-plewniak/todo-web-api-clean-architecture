@@ -1,8 +1,8 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace WebApi.Models;
+namespace Application.Users;
 
-public record CreateUser(
+public record UpdateUser(
     [Required]
     [Length(1, 100)]
     string UserName,

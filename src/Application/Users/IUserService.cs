@@ -1,7 +1,6 @@
 using Domain.Users;
-using WebApi.Models;
 
-namespace WebApi.Services;
+namespace Application.Users;
 
 public interface IUserService
 {

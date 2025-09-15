@@ -1,3 +1,4 @@
+using Application.Users;
 using Microsoft.EntityFrameworkCore;
 using WebApi.Data;
 using WebApi.Services;
