@@ -28,7 +28,7 @@ public class TodoItemsController : ControllerBase
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     public async Task<IActionResult> GetTodoItemAsync(Guid id)
     {
-        TodoItem? todoItem = await _todoItemService.GetTodoItemAsync(id);
+        TodoItemEntity? todoItem = await _todoItemService.GetTodoItemAsync(id);
         
         if (todoItem == null)
         {
@@ -44,7 +44,7 @@ public class TodoItemsController : ControllerBase
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     public async Task<IActionResult> CreateTodoItemAsync(CreateTodoItem createTodoItem)
     {
-        TodoItem todoItem = new()
+        TodoItemEntity todoItemEntity = new()
         {
             Title = createTodoItem.Title,
             Description = createTodoItem.Description,
@@ -53,12 +53,12 @@ public class TodoItemsController : ControllerBase
             UserId = createTodoItem.UserId
         };
 
-        await _todoItemService.CreateTodoItemAsync(todoItem);
+        await _todoItemService.CreateTodoItemAsync(todoItemEntity);
         
         return CreatedAtAction(
             nameof(GetTodoItemAsync),
-            new {id = todoItem.Id},
-            todoItem); 
+            new {id = todoItemEntity.Id},
+            todoItemEntity); 
     }
     
     [HttpPatch("{id:guid}")]
@@ -66,7 +66,7 @@ public class TodoItemsController : ControllerBase
         [FromRoute] Guid id,
         [FromBody] UpdateTodoItem updateTodoItem)
     { 
-        TodoItem? todoItem = await _todoItemService.GetTodoItemAsync(id);
+        TodoItemEntity? todoItem = await _todoItemService.GetTodoItemAsync(id);
         
         if (todoItem == null)
         {
@@ -84,7 +84,7 @@ public class TodoItemsController : ControllerBase
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     public async Task<IActionResult> DeleteTodoItemAsync(Guid id)
     {
-        TodoItem? todoItem = await _todoItemService.GetTodoItemAsync(id);
+        TodoItemEntity? todoItem = await _todoItemService.GetTodoItemAsync(id);
         
         if (todoItem == null)
         {

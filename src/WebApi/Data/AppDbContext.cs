@@ -7,7 +7,7 @@ namespace WebApi.Data;
 
 public class AppDbContext(DbContextOptions<AppDbContext> options) : DbContext(options)
 {
-    public DbSet<TodoItem> TodoItems { get; set; }
+    public DbSet<TodoItemEntity> TodoItems { get; set; }
 
-    public DbSet<User> Users { get; set; }
+    public DbSet<UserEntity> Users { get; set; }
 }

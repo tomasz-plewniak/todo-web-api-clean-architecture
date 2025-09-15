@@ -5,9 +5,9 @@ using WebApi.Models;
 
 namespace WebApi.Data.Configurations;
 
-public class UserConfiguration : IEntityTypeConfiguration<User>
+public class UserConfiguration : IEntityTypeConfiguration<UserEntity>
 {
-    public void Configure(EntityTypeBuilder<User> builder)
+    public void Configure(EntityTypeBuilder<UserEntity> builder)
     {
         builder.HasKey(u => u.Id);
         
@@ -20,6 +20,6 @@ public class UserConfiguration : IEntityTypeConfiguration<User>
             .HasMaxLength(100);
         
         builder.HasMany(u => u.TodoItems)
-            .WithOne(t => t.User);
+            .WithOne(t => t.UserEntity);
     }
 }

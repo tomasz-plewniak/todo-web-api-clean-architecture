@@ -2,9 +2,9 @@ using Domain.TodoItems;
 
 namespace Domain.Users;
 
-public class User
+public class UserEntity
 {
-    public User(
+    public UserEntity(
         string userName,
         string email)
     {
@@ -23,5 +23,5 @@ public class User
     
     public DateTime? UpdatedAt { get; set; }
 
-    public ICollection<TodoItem> TodoItems { get; set; } = [];
+    public ICollection<TodoItemEntity> TodoItems { get; set; } = [];
 }

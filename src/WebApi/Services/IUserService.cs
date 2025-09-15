@@ -5,13 +5,13 @@ namespace WebApi.Services;
 
 public interface IUserService
 {
-    Task<IEnumerable<User>> GetUsersAsync(CancellationToken cancellationToken = default);
+    Task<IEnumerable<UserEntity>> GetUsersAsync(CancellationToken cancellationToken = default);
     
-    Task<User?> GetUserAsync(Guid id, CancellationToken cancellationToken = default);
+    Task<UserEntity?> GetUserAsync(Guid id, CancellationToken cancellationToken = default);
     
-    Task<User> CreateUserAsync(CreateUser createUser);
+    Task<UserEntity> CreateUserAsync(CreateUser createUser);
     
-    Task UpdateUserAsync(User updatedUser);
+    Task UpdateUserAsync(UserEntity updatedUserEntity);
     
-    Task DeleteUserAsync(User user);
+    Task DeleteUserAsync(UserEntity userEntity);
 }

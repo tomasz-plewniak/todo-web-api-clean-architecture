@@ -14,34 +14,34 @@ public class UserService : IUserService
         _appDbContext = appDbContext;
     }
 
-    public async Task<IEnumerable<User>> GetUsersAsync(CancellationToken cancellationToken = default)
+    public async Task<IEnumerable<UserEntity>> GetUsersAsync(CancellationToken cancellationToken = default)
     {
         return await _appDbContext.Users.ToListAsync(cancellationToken);
     }
     
-    public async Task<User?> GetUserAsync(Guid id, CancellationToken cancellationToken = default)
+    public async Task<UserEntity?> GetUserAsync(Guid id, CancellationToken cancellationToken = default)
     {
         return await _appDbContext.Users.SingleOrDefaultAsync(u => u.Id == id, cancellationToken);
     }
 
-    public async Task<User> CreateUserAsync(CreateUser createUser)
+    public async Task<UserEntity> CreateUserAsync(CreateUser createUser)
     {
-        User user = new(createUser.UserName, createUser.Email);
+        UserEntity userEntity = new(createUser.UserName, createUser.Email);
         
-        _appDbContext.Users.Add(user);
+        _appDbContext.Users.Add(userEntity);
         await _appDbContext.SaveChangesAsync();
-        return user;
+        return userEntity;
     }
 
-    public async Task UpdateUserAsync(User updatedUser)
+    public async Task UpdateUserAsync(UserEntity updatedUserEntity)
     {
-        _appDbContext.Users.Update(updatedUser);
+        _appDbContext.Users.Update(updatedUserEntity);
         await _appDbContext.SaveChangesAsync();
     }
 
-    public async Task DeleteUserAsync(User user)
+    public async Task DeleteUserAsync(UserEntity userEntity)
     {
-        _appDbContext.Users.Remove(user);
+        _appDbContext.Users.Remove(userEntity);
         await _appDbContext.SaveChangesAsync();
     }
 }

@@ -5,9 +5,9 @@ using WebApi.Models;
 
 namespace WebApi.Data.Configurations;
 
-public class TodoItemConfiguration : IEntityTypeConfiguration<TodoItem>
+public class TodoItemConfiguration : IEntityTypeConfiguration<TodoItemEntity>
 {
-    public void Configure(EntityTypeBuilder<TodoItem> builder)
+    public void Configure(EntityTypeBuilder<TodoItemEntity> builder)
     {
         builder.HasKey(t => t.Id);
         
@@ -18,7 +18,7 @@ public class TodoItemConfiguration : IEntityTypeConfiguration<TodoItem>
         builder.Property(t => t.Description)
             .HasMaxLength(1000);
 
-        builder.HasOne(t => t.User)
+        builder.HasOne(t => t.UserEntity)
             .WithMany(u => u.TodoItems);
     }
 }
