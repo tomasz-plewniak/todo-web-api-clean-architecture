@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using Domain.TodoItems;
 
-namespace WebApi.Models;
+namespace Application.TodoItems;
 
 public record UpdateTodoItem(
     [MaxLength(100)]

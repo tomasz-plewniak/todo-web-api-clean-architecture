@@ -1,7 +1,6 @@
 using Domain.TodoItems;
 using Domain.Users;
 using Microsoft.EntityFrameworkCore;
-using WebApi.Models;
 
 namespace WebApi.Data;
 
