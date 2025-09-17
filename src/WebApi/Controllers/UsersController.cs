@@ -1,4 +1,5 @@
 using Application.Users;
+using Application.Users.Mappers;
 using Contracts.Responses.Users;
 using Domain.Users;
 using Microsoft.AspNetCore.Mvc;

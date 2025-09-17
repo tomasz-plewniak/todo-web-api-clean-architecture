@@ -1,7 +1,7 @@
 ﻿using Contracts.Responses.Users;
 using Domain.Users;
 
-namespace Application.Users;
+namespace Application.Users.Mappers;
 
 public static class UserMapper
 {

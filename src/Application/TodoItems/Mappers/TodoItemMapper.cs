@@ -1,9 +1,9 @@
-﻿using Application.Users;
+﻿using Application.Users.Mappers;
 using Contracts.Common.TodoItems;
 using Contracts.Responses.TodoItems;
 using Domain.TodoItems;
 
-namespace Application.TodoItems;
+namespace Application.TodoItems.Mappers;
 
 public static class TodoItemMapper
 {
