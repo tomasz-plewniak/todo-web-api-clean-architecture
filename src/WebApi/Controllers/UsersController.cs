@@ -1,18 +1,18 @@
 using Application.Users;
+using Contracts.Responses.Users;
 using Domain.Users;
 using Microsoft.AspNetCore.Mvc;
 
 namespace WebApi.Controllers;
 
 [ApiController]
-[ProducesResponseType<IEnumerable<UserEntity>>(StatusCodes.Status200OK)]
 [Route("api/users")]
 public class UsersController(IUserService userService) : ControllerBase
 {
     [HttpGet]
     [ActionName(nameof(GetUsersAsync))]
-    [ProducesResponseType<IEnumerable<UserEntity>>(StatusCodes.Status200OK)]
-    public async Task<IActionResult>  GetUsersAsync(CancellationToken cancellationToken = default)
+    [ProducesResponseType<IEnumerable<UserDto>>(StatusCodes.Status200OK)]
+    public async Task<IActionResult> GetUsersAsync(CancellationToken cancellationToken = default)
     {
         IEnumerable<UserEntity> users = await userService.GetUsersAsync(cancellationToken);
         
@@ -21,7 +21,7 @@ public class UsersController(IUserService userService) : ControllerBase
 
     [HttpGet("{id:guid}")]
     [ActionName(nameof(GetUserAsync))]   
-    [ProducesResponseType<UserEntity>(StatusCodes.Status200OK)]
+    [ProducesResponseType<UserDto>(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     public async Task<IActionResult> GetUserAsync(
         [FromRoute] Guid id,
@@ -79,9 +79,8 @@ public class UsersController(IUserService userService) : ControllerBase
         return Ok(user); 
     }
     
-    [HttpDelete("{id}")]
-    public async Task<IActionResult> DeleteUserAsync(
-        [FromRoute] Guid id)
+    [HttpDelete("{id:guid}")]
+    public async Task<IActionResult> DeleteUserAsync([FromRoute] Guid id)
     {
         UserEntity? user = await userService.GetUserAsync(id);
 

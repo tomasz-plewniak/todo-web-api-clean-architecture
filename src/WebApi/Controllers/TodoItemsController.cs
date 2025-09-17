@@ -1,4 +1,5 @@
 using Application.TodoItems;
+using Contracts.Responses.TodoItems;
 using Domain.TodoItems;
 using Microsoft.AspNetCore.Mvc;
 
@@ -16,16 +17,18 @@ public class TodoItemsController : ControllerBase
     }
     
     [HttpGet]
-    public async Task<IActionResult>  GetTodoItemsAsync()
+    [ActionName(nameof(GetTodoItemsAsync))]
+    [ProducesResponseType<IEnumerable<TodoItemDto>>(StatusCodes.Status200OK)]
+    public async Task<IActionResult> GetTodoItemsAsync()
     {
         return Ok(await _todoItemService.GetTodoItemsAsync());
     }
 
-    [HttpGet("{id}")]
+    [HttpGet("{id:guid}")]
     [ActionName(nameof(GetTodoItemAsync))]
-    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType<TodoItemDto>(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
-    public async Task<IActionResult> GetTodoItemAsync(Guid id)
+    public async Task<IActionResult> GetTodoItemAsync([FromRoute] Guid id)
     {
         TodoItemEntity? todoItem = await _todoItemService.GetTodoItemAsync(id);
         
@@ -41,7 +44,7 @@ public class TodoItemsController : ControllerBase
     [ActionName(nameof(CreateTodoItemAsync))]
     [ProducesResponseType(StatusCodes.Status201Created)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
-    public async Task<IActionResult> CreateTodoItemAsync(CreateTodoItem createTodoItem)
+    public async Task<IActionResult> CreateTodoItemAsync([FromBody] CreateTodoItem createTodoItem)
     {
         TodoItemEntity todoItemEntity = new()
         {
@@ -61,6 +64,8 @@ public class TodoItemsController : ControllerBase
     }
     
     [HttpPatch("{id:guid}")]
+    [ActionName(nameof(UpdateTodoItemAsync))]
+    [ProducesResponseType<TodoItemDto>(StatusCodes.Status200OK)]
     public async Task<IActionResult> UpdateTodoItemAsync(
         [FromRoute] Guid id,
         [FromBody] UpdateTodoItem updateTodoItem)
@@ -77,11 +82,11 @@ public class TodoItemsController : ControllerBase
         return Ok(todoItem);
     }
     
-    [HttpDelete("{id}")]
+    [HttpDelete("{id:guid}")]
     [ActionName(nameof(DeleteTodoItemAsync))]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
-    public async Task<IActionResult> DeleteTodoItemAsync(Guid id)
+    public async Task<IActionResult> DeleteTodoItemAsync([FromRoute] Guid id)
     {
         TodoItemEntity? todoItem = await _todoItemService.GetTodoItemAsync(id);
         
