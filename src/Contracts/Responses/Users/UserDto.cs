@@ -1,6 +1,6 @@
-using WebApi.DTOs.Responses.TodoItems;
+using Contracts.Responses.TodoItems;
 
-namespace WebApi.DTOs.Responses.Users;
+namespace Contracts.Responses.Users;
 
 public record UserDto
 {

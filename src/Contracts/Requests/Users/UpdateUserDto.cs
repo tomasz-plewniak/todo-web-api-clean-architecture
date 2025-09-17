@@ -1,8 +1,8 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace WebApi.DTOs.Requests.Users;
+namespace Contracts.Requests.Users;
 
-public record CreateUserDto(
+public record UpdateUserDto(
     [Required]
     [Length(1, 100)]
     string UserName,

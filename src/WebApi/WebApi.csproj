@@ -19,11 +19,11 @@
 
     <ItemGroup>
       <Folder Include="Data\Migrations\" />
-      <Folder Include="DTOs\Requests\TodoItems\" />
     </ItemGroup>
 
     <ItemGroup>
       <ProjectReference Include="..\Application\Application.csproj" />
+      <ProjectReference Include="..\Contracts\Contracts.csproj" />
       <ProjectReference Include="..\Domain\Domain.csproj" />
     </ItemGroup>
 

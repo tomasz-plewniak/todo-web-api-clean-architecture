@@ -1,27 +1,28 @@
 using Application.Users;
+using Application.Users.Mappers;
+using Contracts.Responses.Users;
 using Domain.Users;
 using Microsoft.AspNetCore.Mvc;
 
 namespace WebApi.Controllers;
 
 [ApiController]
-[ProducesResponseType<IEnumerable<UserEntity>>(StatusCodes.Status200OK)]
 [Route("api/users")]
 public class UsersController(IUserService userService) : ControllerBase
 {
     [HttpGet]
     [ActionName(nameof(GetUsersAsync))]
-    [ProducesResponseType<IEnumerable<UserEntity>>(StatusCodes.Status200OK)]
-    public async Task<IActionResult>  GetUsersAsync(CancellationToken cancellationToken = default)
+    [ProducesResponseType<IEnumerable<UserDto>>(StatusCodes.Status200OK)]
+    public async Task<IActionResult> GetUsersAsync(CancellationToken cancellationToken = default)
     {
         IEnumerable<UserEntity> users = await userService.GetUsersAsync(cancellationToken);
         
-        return Ok(users);
+        return Ok(users.ToDto());
     }
 
     [HttpGet("{id:guid}")]
     [ActionName(nameof(GetUserAsync))]   
-    [ProducesResponseType<UserEntity>(StatusCodes.Status200OK)]
+    [ProducesResponseType<UserDto>(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     public async Task<IActionResult> GetUserAsync(
         [FromRoute] Guid id,
@@ -34,7 +35,7 @@ public class UsersController(IUserService userService) : ControllerBase
             return NotFound();
         }
         
-        return Ok(user);
+        return Ok(user.ToDto());
     }
 
     [HttpPost]
@@ -76,12 +77,11 @@ public class UsersController(IUserService userService) : ControllerBase
         
         await userService.UpdateUserAsync(user);
         
-        return Ok(user); 
+        return Ok(user.ToDto()); 
     }
     
-    [HttpDelete("{id}")]
-    public async Task<IActionResult> DeleteUserAsync(
-        [FromRoute] Guid id)
+    [HttpDelete("{id:guid}")]
+    public async Task<IActionResult> DeleteUserAsync([FromRoute] Guid id)
     {
         UserEntity? user = await userService.GetUserAsync(id);
 

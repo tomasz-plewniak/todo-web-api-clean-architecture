@@ -1,4 +1,4 @@
-namespace WebApi.DTOs.Common.TodoItems;
+namespace Contracts.Common.TodoItems;
 
 public enum PriorityDto
 {

@@ -27,5 +27,5 @@ public class TodoItemEntity
     
     public Guid UserId { get; set; }
     
-    public UserEntity UserEntity { get; set; }
+    public UserEntity? UserEntity { get; set; }
 }
