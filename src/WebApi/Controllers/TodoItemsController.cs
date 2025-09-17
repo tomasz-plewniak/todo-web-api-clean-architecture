@@ -21,7 +21,7 @@ public class TodoItemsController : ControllerBase
     [ProducesResponseType<IEnumerable<TodoItemDto>>(StatusCodes.Status200OK)]
     public async Task<IActionResult> GetTodoItemsAsync()
     {
-        return Ok(await _todoItemService.GetTodoItemsAsync());
+        return Ok((await _todoItemService.GetTodoItemsAsync()).ToDto());
     }
 
     [HttpGet("{id:guid}")]
@@ -37,7 +37,7 @@ public class TodoItemsController : ControllerBase
             return NotFound();
         }
         
-        return Ok(todoItem);
+        return Ok(todoItem.ToDto());
     }
 
     [HttpPost]
@@ -79,7 +79,7 @@ public class TodoItemsController : ControllerBase
         
         await _todoItemService.UpdateTodoItemAsync(updateTodoItem, todoItem);
         
-        return Ok(todoItem);
+        return Ok(todoItem.ToDto());
     }
     
     [HttpDelete("{id:guid}")]

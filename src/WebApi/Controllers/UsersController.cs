@@ -16,7 +16,7 @@ public class UsersController(IUserService userService) : ControllerBase
     {
         IEnumerable<UserEntity> users = await userService.GetUsersAsync(cancellationToken);
         
-        return Ok(users);
+        return Ok(users.ToDto());
     }
 
     [HttpGet("{id:guid}")]
@@ -34,7 +34,7 @@ public class UsersController(IUserService userService) : ControllerBase
             return NotFound();
         }
         
-        return Ok(user);
+        return Ok(user.ToDto());
     }
 
     [HttpPost]
@@ -76,7 +76,7 @@ public class UsersController(IUserService userService) : ControllerBase
         
         await userService.UpdateUserAsync(user);
         
-        return Ok(user); 
+        return Ok(user.ToDto()); 
     }
     
     [HttpDelete("{id:guid}")]
