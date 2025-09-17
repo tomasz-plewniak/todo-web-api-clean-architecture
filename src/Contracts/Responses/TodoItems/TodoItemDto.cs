@@ -1,7 +1,7 @@
-using WebApi.DTOs.Common.TodoItems;
-using WebApi.DTOs.Responses.Users;
+using Contracts.Common.TodoItems;
+using Contracts.Responses.Users;
 
-namespace WebApi.DTOs.Responses.TodoItems;
+namespace Contracts.Responses.TodoItems;
 
 public record TodoItemDto
 {
