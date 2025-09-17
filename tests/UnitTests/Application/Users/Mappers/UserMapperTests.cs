@@ -81,7 +81,7 @@ public class UserMapperTests
             UpdatedAt = null
         };
 
-        List<UserEntity> entities = new() { entity1, entity2 };
+        List<UserEntity> entities = [entity1, entity2];
 
         // Act
         List<UserDto> result = entities.ToDto().ToList();
@@ -115,7 +115,7 @@ public class UserMapperTests
             UpdatedAt = DateTime.UtcNow
         };
 
-        List<UserEntity> entities = new() { entity };
+        List<UserEntity> entities = [entity];
 
         // Act
         List<UserDto> result = entities.ToDto().ToList();
