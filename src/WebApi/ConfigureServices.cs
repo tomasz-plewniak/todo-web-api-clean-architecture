@@ -1,7 +1,6 @@
 using System.Diagnostics.CodeAnalysis;
 using Application.TodoItems;
 using Application.Users;
-using WebApi.Services;
 
 namespace WebApi;
 

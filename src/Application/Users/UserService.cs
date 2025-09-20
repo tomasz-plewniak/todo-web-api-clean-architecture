@@ -1,9 +1,8 @@
-using Application.Users;
 using Domain.Users;
+using Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
-using WebApi.Data;
 
-namespace WebApi.Services;
+namespace Application.Users;
 
 public class UserService : IUserService
 {
