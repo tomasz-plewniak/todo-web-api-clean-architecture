@@ -2,7 +2,7 @@ using Domain.TodoItems;
 using Domain.Users;
 using Microsoft.EntityFrameworkCore;
 
-namespace WebApi.Data;
+namespace Infrastructure.Data;
 
 public class AppDbContext(DbContextOptions<AppDbContext> options) : DbContext(options)
 {

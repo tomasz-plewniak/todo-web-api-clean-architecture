@@ -1,9 +1,8 @@
-﻿using Application.TodoItems;
-using Domain.TodoItems;
+﻿using Domain.TodoItems;
+using Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
-using WebApi.Data;
 
-namespace WebApi.Services;
+namespace Application.TodoItems;
 
 public class TodoItemService : ITodoItemService
 {
