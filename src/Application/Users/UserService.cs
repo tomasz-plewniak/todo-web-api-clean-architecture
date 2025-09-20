@@ -1,46 +1,38 @@
+using Domain.Common.Interfaces;
 using Domain.Users;
-using Infrastructure.Data;
-using Microsoft.EntityFrameworkCore;
 
 namespace Application.Users;
 
-public class UserService : IUserService
+public class UserService(IUnitOfWork unitOfWork) : IUserService
 {
-    private readonly AppDbContext _appDbContext;
-
-    public UserService(AppDbContext appDbContext)
-    {
-        _appDbContext = appDbContext;
-    }
-
     public async Task<IEnumerable<UserEntity>> GetUsersAsync(CancellationToken cancellationToken = default)
     {
-        return await _appDbContext.Users.ToListAsync(cancellationToken);
+        return await unitOfWork.Repository<UserEntity>().GetAllAsync(cancellationToken);
     }
     
     public async Task<UserEntity?> GetUserAsync(Guid id, CancellationToken cancellationToken = default)
     {
-        return await _appDbContext.Users.SingleOrDefaultAsync(u => u.Id == id, cancellationToken);
+        return await unitOfWork.Repository<UserEntity>().GetByIdAsync(id, cancellationToken);
     }
 
     public async Task<UserEntity> CreateUserAsync(CreateUser createUser)
     {
         UserEntity userEntity = new(createUser.UserName, createUser.Email);
         
-        _appDbContext.Users.Add(userEntity);
-        await _appDbContext.SaveChangesAsync();
+        await unitOfWork.Repository<UserEntity>().AddAsync(userEntity);
+        await unitOfWork.SaveChangesAsync();
         return userEntity;
     }
 
     public async Task UpdateUserAsync(UserEntity updatedUserEntity)
     {
-        _appDbContext.Users.Update(updatedUserEntity);
-        await _appDbContext.SaveChangesAsync();
+        unitOfWork.Repository<UserEntity>().Update(updatedUserEntity);
+        await unitOfWork.SaveChangesAsync();
     }
 
     public async Task DeleteUserAsync(UserEntity userEntity)
     {
-        _appDbContext.Users.Remove(userEntity);
-        await _appDbContext.SaveChangesAsync();
+        unitOfWork.Repository<UserEntity>().Remove(userEntity);
+        await unitOfWork.SaveChangesAsync();
     }
 }
