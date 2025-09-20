@@ -8,8 +8,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		.gitignore = .gitignore
 		LICENSE = LICENSE
 		README.md = README.md
-		docker\todo-web-api-base-demo\db-docker-compose.yml = docker\todo-web-api-base-demo\db-docker-compose.yml
 		.github\workflows\dotnet.yml = .github\workflows\dotnet.yml
+		docker\.DS_Store = docker\.DS_Store
+		docker\todo-web-api-clean-architecture\db-docker-compose.yml = docker\todo-web-api-clean-architecture\db-docker-compose.yml
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{CAE1C2C6-476D-47D3-A6BA-7695C0DF131E}"
