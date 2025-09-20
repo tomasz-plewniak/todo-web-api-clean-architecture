@@ -1,14 +1,15 @@
-using Application.TodoItems;
-using Application.Users;
+using Application;
+using Infrastructure;
 using Microsoft.EntityFrameworkCore;
+using WebApi;
 using WebApi.Data;
-using WebApi.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-builder.Services.AddScoped<ITodoItemService, TodoItemService>();
-builder.Services.AddScoped<IUserService, UserService>();
+builder.Services.AddApplicationServices();
+builder.Services.AddInfrastructureServices();
+builder.Services.AddWebApiServices();
 
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
